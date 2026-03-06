@@ -12,7 +12,6 @@
             --accent-color: #4a90e2;
             --text-color: #e0e0e0;
             --sub-text: #a0a0a0;
-            --discord-color: #5865F2;
             --note-color: #2cb696;
             --mc-color: #538b35;
         }
@@ -51,6 +50,7 @@
             margin-bottom: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden; /* はみ出し防止 */
         }
 
         h3 {
@@ -63,25 +63,17 @@
             gap: 8px;
         }
 
-        /* Discord Section Custom */
-        .discord-card {
-            background: #2f3136;
-            border-radius: 10px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: white;
-            transition: 0.2s;
+        /* Discord ウィジェットのレスポンシブ設定 */
+        .discord-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px; /* スマホで見やすい高さに調整 */
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .discord-card:hover { background: #36393f; }
-        .status-dot {
-            height: 10px; width: 10px;
-            background-color: #3ba55c;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
+        .discord-wrapper iframe {
+            width: 100% !important;
+            height: 100% !important;
         }
 
         /* SNS Grid */
@@ -114,13 +106,16 @@
             border-radius: 8px;
             font-weight: bold;
             margin-top: 10px;
+            transition: opacity 0.2s;
         }
+        .btn-main:hover { opacity: 0.8; }
 
         footer { text-align: center; padding: 20px; color: #555; font-size: 0.8rem; }
 
         @media (max-width: 480px) {
             header h1 { font-size: 1.8rem; }
             .sns-grid { grid-template-columns: 1fr; }
+            .discord-wrapper { height: 350px; } /* iPhone 7などの小さい画面用 */
         }
     </style>
 </head>
@@ -135,42 +130,40 @@
 
     <div class="box">
         <h3>💬 Discord Community</h3>
-        <a href="https://discord.gg/5dMs2NJtYR" target="_blank" class="discord-card">
-            <div>
-                <div style="font-weight: bold; font-size: 1.1rem;">DorudoCommunity</div>
-                <div style="font-size: 0.8rem; color: #b9bbbe;">
-                    <span class="status-dot"></span> 7人がオンライン / 10名参加中
-                </div>
-            </div>
-            <div style="background: var(--discord-color); padding: 5px 12px; border-radius: 5px; font-size: 0.8rem;">参加する</div>
-        </a>
-        <p style="font-size: 0.75rem; margin-top: 8px; color: #666;">創設：2026年3月</p>
+        <p style="font-size: 0.8rem; color: var(--sub-text); margin-bottom: 10px;">リアルタイムのオンライン人数を確認できます</p>
+        <div class="discord-wrapper">
+            <iframe src="https://discordapp.com/widget?id=1477634388765184070&theme=dark" 
+                allowtransparency="true" frameborder="0" 
+                sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+            </iframe>
+        </div>
+        <p style="font-size: 0.75rem; margin-top: 10px; color: #555;">創設：2026年3月</p>
     </div>
 
     <div class="box">
         <h3>🔗 Links / 関連リンク</h3>
         <div class="sns-grid">
             <a href="https://note.com/dorudoserver/all" target="_blank" class="sns-item" style="border-left: 4px solid var(--note-color);">
-                <span>📝</span> <b>NOTE</b> (ブログ・記録)
+                <span>📝</span> <b>NOTE</b> (ブログ)
             </a>
             <a href="https://minecraft-mcworld.com/author/93dc31d6bf445963824dcf200048ef2bfb6f5303/" target="_blank" class="sns-item" style="border-left: 4px solid var(--mc-color);">
-                <span>🛠️</span> <b>配布ワールド</b> (クラコロ)
+                <span>🛠️</span> <b>配布サイト</b> (クラコロ)
             </a>
         </div>
     </div>
 
     <div class="box">
         <h3>📢 Participation / 参加・募集</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 15px;">Dorudo Server ・ Team Peak Edge ではメンバーを募集中です。</p>
-        <a href="https://503error-detayo.pages.dev/" target="_blank" class="btn-main">製作者募集フォーム</a>
-        <a href="https://ikenbako.pages.dev/" target="_blank" class="btn-main" style="background: transparent; border: 1px solid #444; margin-top: 8px;">ご意見箱</a>
+        <p style="font-size: 0.9rem; margin-bottom: 15px;">Dorudo Server ・ Team Peak Edge で一緒に活動しませんか？</p>
+        <a href="https://503error-detayo.pages.dev/" target="_blank" class="btn-main">製作者募集フォームへ移動</a>
+        <a href="https://ikenbako.pages.dev/" target="_blank" class="btn-main" style="background: transparent; border: 1px solid #444; margin-top: 8px;">ご意見箱はこちら</a>
     </div>
 
     <div class="box">
-        <h3>🆕 News</h3>
+        <h3>🆕 Latest News</h3>
         <p style="font-size: 0.9rem; color: var(--text-color);">
             <small style="color: var(--accent-color);">2026/03/04</small><br>
-            サーバーアップデート実施！新ワールド追加予定。
+            サーバーアップデート実施。新ワールド公開に向けて調整中！
         </p>
     </div>
 
