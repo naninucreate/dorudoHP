@@ -22,7 +22,7 @@ const token = Math.random().toString(36).substring(2);
 sessionStorage.setItem("auth", token);
 
 // ⏳ カウントダウン
-let time = 5;
+let time = 60;
 
 function countdown(){
   document.getElementById("count").textContent = time;
@@ -52,7 +52,7 @@ window.onload = countdown;
 <h1>ただいま仮ページとなっております。</h1>
 
 <p>
-  <span id="count">5</span> 秒後に自動で移動します
+  <span id="count">60</span> 秒後に自動で移動します
 </p>
 
 <!-- admax -->
